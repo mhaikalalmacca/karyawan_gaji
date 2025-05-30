@@ -17,48 +17,45 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Detail Rating</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light">
 
-
-<div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            <h4 class="mb-0 text-center">Detail Tarif Rating</h4>
-        </div>
+<div class="container my-5">
+    <h3 class="text-center mb-4 text-primary fw-bold">DETAIL RATING</h3>
+    <div class="card shadow rounded">
         <div class="card-body">
-            <table class="table table-bordered">
-            <tr>
-                    <th  style="width: 200px;">ID</th>
-                    <td><?= $data_rating['id']; ?></td>
-                </tr>
-                <tr>
-                    <th>Rating</th>
-                    <td><?= $data_rating['rating']; ?></td>
-                </tr>
-                <tr>
-                    <th>Persentase Bonus</th>
-                    <td><?= $data_rating['presentase_bonus']; ?>%</td>
-                </tr>
-                <tr>
-                    <th>Jumlah Karyawan</th>
-                    <td><?= $data_jumlah['jumlah']; ?> orang</td>
-                </tr>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center align-middle">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Rating</th>
+                            <th>Persentase Bonus</th>
+                            <th>Jumlah Karyawan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?= $data_rating['id']; ?></td>
+                            <td><?= $data_rating['rating']; ?></td>
+                            <td><?= $data_rating['presentase_bonus']; ?>%</td>
+                            <td><?= $data_jumlah['jumlah']; ?> orang</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <a href="../index.php?page=rating" class="btn btn-outline-secondary mt-3">← Kembali</a>
         </div>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

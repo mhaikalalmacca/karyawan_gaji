@@ -18,7 +18,6 @@ $query = "
     WHERE g.id = ?
 ";
 
-
 $stmt = $conn->prepare($query);
 if (!$stmt) {
     die("Query error: " . $conn->error);
@@ -37,80 +36,62 @@ $data = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Detail Gaji Karyawan</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
-<body>
+<body class="bg-light">
 
-<div class="container mt-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white text-center">
-            <h4 class="mb-0">Detail Gaji Karyawan</h4>
-        </div>
+<div class="container my-5">
+    <h3 class="text-center mb-4 text-primary fw-bold">DETAIL GAJI KARYAWAN</h3>
+    <div class="card shadow rounded">
         <div class="card-body">
-            <table class="table table-bordered">
-                <tr>
-                    <th style="width: 200px;">Nama</th>
-                    <td><?= htmlspecialchars($data['nama']) ?></td>
-                </tr>
-                <tr>
-                    <th>Jabatan</th>
-                    <td><?= htmlspecialchars($data['nama_jabatan']) ?></td>
-                </tr>
-                <tr>
-                    <th>Umur</th>
-                    <td><?= $data['umur'] ?> tahun</td>
-                </tr>
-                <tr>
-                    <th>Jenis Kelamin</th>
-                    <td><?= $data['jenis_kelamin'] ?></td>
-                </tr>
-                <tr>
-                    <th>Status</th>
-                    <td><?= $data['status'] ?></td>
-                </tr>
-                <tr>
-                    <th>Periode</th>
-                    <td><?= $data['periode'] ?></td>
-                </tr>
-                <tr>
-                    <th>Lama Lembur</th>
-                    <td><?= $data['lama_lembur'] ?> jam</td>
-                </tr>
-                <tr>
-                    <th>Tarif Lembur</th>
-                    <td>Rp <?= number_format($data['tarif'], 0, ',', '.') ?></td>
-                </tr>
-                <tr>
-                    <th>Total Lembur</th>
-                    <td>Rp <?= number_format($data['total_lembur'], 0, ',', '.') ?></td>
-                </tr>
-                <tr>
-                    <th>Total Bonus</th>
-                    <td>Rp <?= number_format($data['total_bonus'], 0, ',', '.') ?></td>
-                </tr>
-                <tr>
-                    <th>Total Tunjangan</th>
-                    <td>Rp <?= number_format($data['total_tunjangan'], 0, ',', '.') ?></td>
-                </tr>
-                <tr>
-                    <th>Total Pendapatan</th>
-                    <td><strong>Rp <?= number_format($data['total_pendapatan'], 0, ',', '.') ?></strong></td>
-                </tr>
-                <tr>
-                    <th>Tanggal Input</th>
-                    <td><?= $data['created_at'] ?? '-' ?></td>
-                </tr>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered text-center align-middle">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Nama</th>
+                            <th>Jabatan</th>
+                            <th>Umur</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Status</th>
+                            <th>Periode</th>
+                            <th>Lama Lembur</th>
+                            <th>Tarif Lembur</th>
+                            <th>Total Lembur</th>
+                            <th>Total Bonus</th>
+                            <th>Total Tunjangan</th>
+                            <th>Total Pendapatan</th>
+                            <th>Tanggal Input</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?= htmlspecialchars($data['nama']) ?></td>
+                            <td><?= htmlspecialchars($data['nama_jabatan']) ?></td>
+                            <td><?= $data['umur'] ?> tahun</td>
+                            <td><?= $data['jenis_kelamin'] ?></td>
+                            <td><?= $data['status'] ?></td>
+                            <td><?= $data['periode'] ?></td>
+                            <td><?= $data['lama_lembur'] ?> jam</td>
+                            <td>Rp <?= number_format($data['tarif'], 0, ',', '.') ?></td>
+                            <td>Rp <?= number_format($data['total_lembur'], 0, ',', '.') ?></td>
+                            <td>Rp <?= number_format($data['total_bonus'], 0, ',', '.') ?></td>
+                            <td>Rp <?= number_format($data['total_tunjangan'], 0, ',', '.') ?></td>
+                            <td><strong>Rp <?= number_format($data['total_pendapatan'], 0, ',', '.') ?></strong></td>
+                            <td><?= date('d M Y', strtotime($data['created_at'])) ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <a href="../index.php?page=gaji" class="btn btn-outline-secondary mt-3">← Kembali</a>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
