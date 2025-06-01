@@ -33,7 +33,29 @@ if ($result->num_rows == 0) {
 }
 
 $data = $result->fetch_assoc();
+
+// Konversi bulan ke Bahasa Indonesia
+$bulanIndo = [
+    'January' => 'Januari',
+    'February' => 'Februari',
+    'March' => 'Maret',
+    'April' => 'April',
+    'May' => 'Mei',
+    'June' => 'Juni',
+    'July' => 'Juli',
+    'August' => 'Agustus',
+    'September' => 'September',
+    'October' => 'Oktober',
+    'November' => 'November',
+    'December' => 'Desember'
+];
+
+$tanggalPeriode = strtotime($data['periode']);
+$bulan = date('F', $tanggalPeriode);
+$tahun = date('Y', $tanggalPeriode);
+$periodeFormatted = $bulanIndo[$bulan] . ' ' . $tahun;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -75,7 +97,7 @@ $data = $result->fetch_assoc();
                             <td><?= $data['umur'] ?> tahun</td>
                             <td><?= $data['jenis_kelamin'] ?></td>
                             <td><?= $data['status'] ?></td>
-                            <td><?= $data['periode'] ?></td>
+                            <td><?= $periodeFormatted ?></td>
                             <td><?= $data['lama_lembur'] ?> jam</td>
                             <td>Rp <?= number_format($data['tarif'], 0, ',', '.') ?></td>
                             <td>Rp <?= number_format($data['total_lembur'], 0, ',', '.') ?></td>

@@ -25,11 +25,34 @@ include 'config/koneksi.php';
             $no = 1;
             $query = mysqli_query($conn, "SELECT gaji.*, karyawan.nama FROM gaji 
                                           JOIN karyawan ON gaji.id_karyawan = karyawan.id");
+
+            // Array bulan dalam Bahasa Indonesia
+            $bulanIndo = [
+                'January' => 'Januari',
+                'February' => 'Februari',
+                'March' => 'Maret',
+                'April' => 'April',
+                'May' => 'Mei',
+                'June' => 'Juni',
+                'July' => 'Juli',
+                'August' => 'Agustus',
+                'September' => 'September',
+                'October' => 'Oktober',
+                'November' => 'November',
+                'December' => 'Desember'
+            ];
+
             while ($data = mysqli_fetch_assoc($query)) {
+                // Format periode ke Bulan Tahun (contoh: Juni 2025)
+                $tanggal = strtotime($data['periode']);
+                $bulan = date('F', $tanggal);
+                $tahun = date('Y', $tanggal);
+                $periodeFormatted = $bulanIndo[$bulan] . ' ' . $tahun;
+
                 echo "<tr>
                         <td>$no</td>
                         <td>{$data['nama']}</td>
-                        <td>{$data['periode']}</td>
+                        <td>$periodeFormatted</td>
                         <td>Rp " . number_format($data['total_pendapatan'], 0, ',', '.') . "</td>
                         <td>
                             <div class='d-flex justify-content-center flex-wrap gap-2'>

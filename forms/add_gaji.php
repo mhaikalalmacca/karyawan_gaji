@@ -4,7 +4,8 @@ include_once '../config/koneksi.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_karyawan      = $_POST['id_karyawan'];
     $id_lembur        = $_POST['id_lembur'];
-    $periode          = $_POST['periode'];
+    $periode_input    = $_POST['periode']; // format: 2025-06
+    $periode          = $periode_input . "-01"; // ubah jadi 2025-06-01
     $lama_lembur      = $_POST['lama_lembur'];
     $total_lembur     = $_POST['total_lembur'];
     $total_bonus      = $_POST['total_bonus'];
@@ -69,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="mb-3">
       <label class="form-label">Periode</label>
-      <input type="text" name="periode" class="form-control" placeholder="Misal: Mei 2025" required>
+      <input type="month" name="periode" class="form-control" required>
     </div>
 
     <div class="mb-3">

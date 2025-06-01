@@ -17,7 +17,8 @@ if (!$gaji) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_karyawan      = $_POST['id_karyawan'];
     $id_lembur        = $_POST['id_lembur'];
-    $periode          = $_POST['periode'];
+    $periode_input    = $_POST['periode']; // format: YYYY-MM
+    $periode          = $periode_input . "-01"; // ubah ke format lengkap
     $lama_lembur      = $_POST['lama_lembur'];
     $total_lembur     = $_POST['total_lembur'];
     $total_bonus      = $_POST['total_bonus'];
@@ -89,7 +90,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="mb-3">
       <label class="form-label">Periode</label>
-      <input type="text" name="periode" class="form-control" value="<?= htmlspecialchars($gaji['periode']) ?>" required>
+      <?php
+      $periode_val = substr($gaji['periode'], 0, 7); // potong ke format YYYY-MM
+      ?>
+      <input type="month" name="periode" class="form-control" value="<?= $periode_val ?>" required>
     </div>
 
     <div class="mb-3">
