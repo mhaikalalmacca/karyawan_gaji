@@ -17,8 +17,8 @@ if (!$gaji) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_karyawan      = $_POST['id_karyawan'];
     $id_lembur        = $_POST['id_lembur'];
-    $periode_input    = $_POST['periode']; // format: YYYY-MM
-    $periode          = $periode_input . "-01"; // ubah ke format lengkap
+    $periode_input    = $_POST['periode']; 
+    $periode          = $periode_input . "-01"; 
     $lama_lembur      = $_POST['lama_lembur'];
     $total_lembur     = $_POST['total_lembur'];
     $total_bonus      = $_POST['total_bonus'];
